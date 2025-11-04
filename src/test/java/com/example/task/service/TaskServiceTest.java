@@ -23,8 +23,8 @@ public class TaskServiceTest {
         Collection<Task> tasks = service.getAllTasks();
         assertEquals(1, tasks.size());
         List<Task> taskList = new ArrayList<>(tasks);
-        assertEquals("Faire les courses", taskList.get(0).getDescription());
-        assertEquals(EN_COURS, taskList.get(0).getStatus());
+        assertEquals("Faire les courses", taskList.getFirst().getDescription());
+        assertEquals(EN_COURS, taskList.getFirst().getStatus());
     }
 
     @Test
@@ -42,20 +42,21 @@ public class TaskServiceTest {
     @Test
     public void testGetTask() {
         TaskService service = new TaskService();
-        Task task = service.addTask("Faire les courses");
+        Task task1 = service.addTask("Faire les courses");
+        Task task2 = service.addTask("Ranger les courses");
 
-        task = service.getTask(task.getId());
+        task1 = service.getTask(task1.getId());
 
-        assertEquals("Faire les courses", task.getDescription());
-        assertEquals(EN_COURS, task.getStatus());
-        assertEquals(1, task.getId());
+        assertEquals("Faire les courses", task1.getDescription());
+        assertEquals(EN_COURS, task1.getStatus());
+        assertEquals(task1.getId() + 1, task2.getId());
     }
 
     @Test
     public void testGetAllTasks() {
         TaskService service = new TaskService();
-        Task task = service.addTask("Faire les courses");
-        Task task1 = service.addTask("Ranger les courses");
+        service.addTask("Faire les courses");
+        service.addTask("Ranger les courses");
 
         Collection<Task> tasks = service.getAllTasks();
         assertEquals(2, tasks.size());
