@@ -12,6 +12,11 @@ import java.util.Map;
 public class TaskService {
     private Map<Long, Task> tasks = new HashMap<>();
 
+    public TaskService() {
+        addTask("Faire les courses");
+        addTask("Ranger les courses");
+    }
+
     public Task addTask (String description) {
         Task task = new Task(description);
         tasks.put(task.getId(), task);
