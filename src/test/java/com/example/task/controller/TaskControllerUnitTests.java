@@ -51,8 +51,7 @@ public class TaskControllerUnitTests {
                 .andExpect(jsonPath("$[0].id").isNotEmpty())
                 .andExpect(jsonPath("$[0].description").value("Tâche 1"))
                 .andExpect(jsonPath("$[1].id").isNotEmpty())
-                .andExpect(jsonPath("$[1].description").value("Tâche 2"))
-        ;
+                .andExpect(jsonPath("$[1].description").value("Tâche 2"));
     }
 
     @Test
